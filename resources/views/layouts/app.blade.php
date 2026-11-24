@@ -14,10 +14,12 @@
                     <p class="text-xs font-semibold uppercase tracking-widest text-sky-600">PENS</p>
                     <p class="text-sm font-semibold text-slate-800">Tracer Study — Monitoring Admin</p>
                 </div>
-                <nav class="text-sm">
-                    <a href="{{ route('admin.dashboard.ringkasan') }}" class="rounded-lg px-3 py-2 font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900">
-                        Ringkasan
-                    </a>
+                <nav class="flex flex-wrap items-center gap-1 text-sm">
+                    <a href="{{ route('admin.dashboard.ringkasan') }}" class="rounded-lg px-3 py-2 font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900">Ringkasan</a>
+                    <a href="{{ route('admin.dashboard.keterserapan') }}" class="rounded-lg px-3 py-2 font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900">Keterserapan</a>
+                    <a href="{{ route('admin.dashboard.relevansi') }}" class="rounded-lg px-3 py-2 font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900">Relevansi</a>
+                    <a href="{{ route('admin.dashboard.profil-alumni') }}" class="rounded-lg px-3 py-2 font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900">Profil Alumni</a>
+                    <a href="{{ route('admin.dashboard.data-jawaban') }}" class="rounded-lg px-3 py-2 font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900">Data Jawaban</a>
                 </nav>
             </div>
         </header>
