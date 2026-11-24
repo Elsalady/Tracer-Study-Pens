@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use App\Services\DataJawabanService;
 use App\Services\KeterserapanService;
 use App\Services\ProfilAlumniService;
@@ -19,6 +20,7 @@ class DashboardPagesTest extends TestCase
         parent::setUp();
 
         $this->seed(DatabaseSeeder::class);
+        $this->actingAs(User::firstOrFail());
     }
 
     public function test_halaman_keterserapan(): void

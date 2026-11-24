@@ -50,7 +50,7 @@
         @if ($showSearch)
             <label class="text-xs font-medium text-slate-600">
                 Cari
-                <input type="text" name="q" value="{{ old('q', $filter['q'] ?? '') }}" placeholder="NRP, nama, atau perusahaan" class="mt-1 w-full rounded-lg border-slate-300 text-sm">
+                <input type="text" name="q" value="{{ old('q', $filter['q'] ?? '') }}" placeholder="Cari..." title="Cari berdasarkan NRP, nama, atau perusahaan" class="mt-1 w-full rounded-lg border-slate-300 text-sm">
             </label>
         @endif
     </div>
