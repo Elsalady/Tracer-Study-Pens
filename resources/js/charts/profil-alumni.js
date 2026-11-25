@@ -1,11 +1,48 @@
 import { Chart } from 'chart.js';
+import { chartAnimation, gridOptions, palette, tooltipOptions } from './palette';
 
-const BAR_HORIZONTAL = {
+const horizontalOptions = (delay) => ({
     indexAxis: 'y',
     responsive: true,
     maintainAspectRatio: false,
-    scales: { x: { beginAtZero: true, ticks: { precision: 0 } } },
-};
+    animation: chartAnimation(delay),
+    plugins: {
+        legend: { display: false },
+        tooltip: tooltipOptions,
+    },
+    scales: {
+        x: {
+            beginAtZero: true,
+            grid: { color: gridOptions.color },
+            ticks: { precision: 0, color: gridOptions.tickColor },
+        },
+        y: {
+            grid: { display: false },
+            ticks: { color: gridOptions.tickColor },
+        },
+    },
+});
+
+const verticalOptions = (delay) => ({
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: chartAnimation(delay),
+    plugins: {
+        legend: { display: false },
+        tooltip: tooltipOptions,
+    },
+    scales: {
+        y: {
+            beginAtZero: true,
+            grid: { color: gridOptions.color },
+            ticks: { precision: 0, color: gridOptions.tickColor },
+        },
+        x: {
+            grid: { display: false },
+            ticks: { color: gridOptions.tickColor },
+        },
+    },
+});
 
 export function renderProfilAlumni({ bidang = [], skala_gaji: skalaGaji = [], kabupaten_top: kabupaten = [] } = {}) {
     const bidangEl = document.getElementById('chart-bidang-pekerjaan');
@@ -18,10 +55,12 @@ export function renderProfilAlumni({ bidang = [], skala_gaji: skalaGaji = [], ka
                 datasets: [{
                     label: 'Jumlah alumni',
                     data: bidang.map((row) => row.jumlah),
-                    backgroundColor: '#0ea5e9',
+                    backgroundColor: palette.series[1],
+                    borderRadius: 6,
+                    maxBarThickness: 22,
                 }],
             },
-            options: BAR_HORIZONTAL,
+            options: horizontalOptions(90),
         });
     }
 
@@ -35,14 +74,12 @@ export function renderProfilAlumni({ bidang = [], skala_gaji: skalaGaji = [], ka
                 datasets: [{
                     label: 'Jumlah alumni',
                     data: skalaGaji.map((row) => row.jumlah),
-                    backgroundColor: '#8b5cf6',
+                    backgroundColor: palette.series[2],
+                    borderRadius: 6,
+                    maxBarThickness: 42,
                 }],
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: { y: { beginAtZero: true, ticks: { precision: 0 } } },
-            },
+            options: verticalOptions(180),
         });
     }
 
@@ -56,10 +93,12 @@ export function renderProfilAlumni({ bidang = [], skala_gaji: skalaGaji = [], ka
                 datasets: [{
                     label: 'Jumlah alumni',
                     data: kabupaten.map((row) => row.jumlah),
-                    backgroundColor: '#f59e0b',
+                    backgroundColor: palette.series[3],
+                    borderRadius: 6,
+                    maxBarThickness: 20,
                 }],
             },
-            options: BAR_HORIZONTAL,
+            options: horizontalOptions(270),
         });
     }
 }

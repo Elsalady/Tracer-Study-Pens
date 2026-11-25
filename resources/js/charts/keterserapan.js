@@ -1,4 +1,5 @@
 import { Chart } from 'chart.js';
+import { chartAnimation, gridOptions, palette, tooltipOptions } from './palette';
 
 export function renderKeterserapan({ per_prodi: perProdi = [] } = {}) {
     const el = document.getElementById('chart-keterserapan-prodi');
@@ -14,13 +15,31 @@ export function renderKeterserapan({ per_prodi: perProdi = [] } = {}) {
             datasets: [{
                 label: 'Keterserapan (%)',
                 data: perProdi.map((row) => row.persentase),
-                backgroundColor: '#0284c7',
+                backgroundColor: palette.series[0],
+                borderRadius: 6,
+                maxBarThickness: 42,
             }],
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: true, max: 100 } },
+            animation: chartAnimation(90),
+            plugins: {
+                legend: { display: false },
+                tooltip: tooltipOptions,
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: { color: gridOptions.color },
+                    ticks: { color: gridOptions.tickColor },
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { color: gridOptions.tickColor },
+                },
+            },
         },
     });
 }
